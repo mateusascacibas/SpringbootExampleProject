@@ -10,25 +10,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/metodos")
-public class MetodosHttpController {
+public class HttpMethodsController {
 	@GetMapping
 	public String get() {
-		return "Requisição Get";
+		return "Requisicao Get";
 	}
 	@PostMapping
 	public String post() {
-		return "Requisição Post";
+		return "Requisicao Post";
 	}
 	@PutMapping
 	public String put() {
-		return "Requisição Put	";
+		return "Requisicao Put";
 	}
 	@PatchMapping
 	public String patch() {
-		return "Requisição Patch";
+		return "Requisicao Patch";
 	}
 	@DeleteMapping
 	public String delete() {
-		return "Requisição Delete";
+		return "Requisicao Delete";
 	}
 }

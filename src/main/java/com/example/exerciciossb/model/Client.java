@@ -1,14 +1,18 @@
 package com.example.exerciciossb.model;
 
-public class Cliente {
+public class Client {
 	private int id;
 	private String nome;
 	private String cpf;
 	
-	public Cliente(int id, String nome, String cpf) {
+	public Client(int id, String nome, String cpf) {
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
+	}
+	
+	public Client() {
+		
 	}
 	public int getId() {
 		return id;

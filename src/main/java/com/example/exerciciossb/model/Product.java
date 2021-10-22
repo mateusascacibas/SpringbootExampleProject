@@ -9,7 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Produto {
+public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -22,15 +22,15 @@ public class Produto {
 	@Min(0)
 	@Max(1)
 	private double desconto;
-	
-	public Produto(String nome, double preco, double desconto) {
+
+	public Product(String nome, double preco, double desconto) {
 		super();
 		this.nome = nome;
 		this.preco = preco;
 		this.desconto = desconto;
 	}
 
-	public Produto() {
+	public Product() {
 		
 	}
 	public String getNome() {

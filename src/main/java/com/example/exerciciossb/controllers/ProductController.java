@@ -14,43 +14,43 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.exerciciossb.model.Produto;
-import com.example.exerciciossb.model.repositories.ProdutoRepository;
+import com.example.exerciciossb.model.Product;
+import com.example.exerciciossb.model.repositories.ProductRepository;
 
 @RestController
 @RequestMapping("/api/produtos")
-public class ProdutoController {
+public class ProductController {
 	
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private ProductRepository productRepository;
 	@RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT})
-	public @ResponseBody Produto novoProduto(@Valid Produto produto) {
-		System.out.println("Preço com desconto aplicado: " + (produto.getPreco() - (produto.getPreco() * produto.getDesconto())));
-		produtoRepository.save(produto);	
-		return produto;
+	public @ResponseBody Product newProduct(@Valid Product product) {
+		System.out.println("Preço com desconto aplicado: " + (product.getPreco() - (product.getPreco() * product.getDesconto())));
+		productRepository.save(product);
+		return product;
 	}
 	@GetMapping
-	public Iterable<Produto> obterProdutos() {
-		return produtoRepository.findAll();
+	public Iterable<Product> getProducts() {
+		return productRepository.findAll();
 	}
 	
 	@GetMapping(path = "/nome/{parteNome}")
-	public Iterable<Produto> obterProdutosPorNome(@PathVariable String parteNome) {
-		return produtoRepository.findByNomeContainingIgnoreCase(parteNome);
+	public Iterable<Product> getProductsByName(@PathVariable String parteNome) {
+		return productRepository.findByNomeContainingIgnoreCase(parteNome);
 	}
 	
 	@GetMapping(path = "/{id}")
-	public Optional<Produto>obterProdutoPorID(@PathVariable int id) {
-		return produtoRepository.findById(id);
+	public Optional<Product>getProductsById(@PathVariable int id) {
+		return productRepository.findById(id);
 	}
 	
 	@GetMapping(path= "/pagina/{numeroPagina}/{qtdPagina}")
-	public Iterable<Produto>obterProdutoPorPagina(@PathVariable int numeroPagina, @PathVariable int qtdPagina){
-		if(qtdPagina > 5) {
-			qtdPagina = 5;
+	public Iterable<Product>getProductsByPage(@PathVariable int pageNumber, @PathVariable int qtdPage){
+		if(qtdPage > 5) {
+			qtdPage = 5;
 		}
-		PageRequest page = PageRequest.of(numeroPagina,qtdPagina);
-		return produtoRepository.findAll(page);
+		PageRequest page = PageRequest.of(pageNumber,qtdPage);
+		return productRepository.findAll(page);
 	}
 	
 //	@PutMapping
@@ -60,7 +60,7 @@ public class ProdutoController {
 //	}
 	
 	@DeleteMapping(path = "/{id}")
-	public void excluirProduto(@PathVariable int id) { 
-		produtoRepository.deleteById(id);
+	public void deleteProduct(@PathVariable int id) { 
+		productRepository.deleteById(id);
 	}
 }
